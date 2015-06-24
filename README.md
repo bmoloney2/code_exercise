@@ -8,3 +8,5 @@ To run the script open the terminal, move to directory containing schedule.py, a
 python schedule.py
 
 The script will ask for the path to your CSV file. Input the path and hit enter.
+
+There is a sample CSV file included in this repo.  It contains a duplicate to demonstrate unique list functionality.
