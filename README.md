@@ -1,5 +1,8 @@
 # code_exercise
-Solution to code exercise written in Python.
+A solution to code exercise written in Python.
+
+You will need the Python module pandas installed:
+sudo apt-get install python-pandas
 
 To run, move to directory containing script and type: 
 python schedule.py
