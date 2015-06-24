@@ -1,22 +1,28 @@
 #!/usr/bin/python
 
 import csv
-from prettytable import PrettyTable
-from prettytable import from_csv
-from prettytable import PLAIN_COLUMNS
-from pprint import pprint
-import itertools
 
 filename = raw_input('Enter path to schedule: ')
 
-#import csv to list and remove underscores
+#import header and remove underscores/commas
+csv_header = []
+def pull_headers(l):
+   with open(l) as f:
+      reader = f.xreadlines()
+      row1 = next(reader)
+      no_undr = row1.replace('_', ' ')
+      no_comm = no_undr.replace(',', ' ')
+      csv_header.append(no_comm)
+      return csv_header
+
+#import csv to list
 csv_list = []
 with open(filename, 'r') as f:
-    for line in f.readlines():
-        z = line.replace('_', ' ')
-	l = z.strip().split(',')
-	csv_list.append((l))
-    
+   f.readline()
+   for line in f.readlines():
+	 l = line.strip().split(',')
+         csv_list.append((l))
+         
 #remove duplicates from list      
 def unique(lst):
     last = object()
@@ -28,7 +34,15 @@ def unique(lst):
 
 #sort list and call unique to remove duplicates
 def sort_and_unique(l):
-    return list(unique(sorted(l, reverse=True)))
-csv_su = sort_and_unique(csv_list)
+   return list(unique(sorted(l)))
 
-pprint(csv_su)
+#get data from functions and sort list for printing
+csv_clnheader = (pull_headers(filename))
+csv_clean = (sort_and_unique(csv_list))
+csvlst_srt = sorted(csv_clean, key = lambda x : (x[2])) #sort list by run number
+
+#print headers and schedule
+for items in csv_clnheader:
+    print (''.join(map(str, items)))
+for items in csvlst_srt:
+    print (''.join(map(str, items)))
