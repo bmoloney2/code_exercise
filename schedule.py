@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
-import csv
+import csv,os
+import pandas as pd
 
 filename = raw_input('Enter path to schedule: ')
 
@@ -41,8 +42,9 @@ csv_clnheader = (pull_headers(filename))
 csv_clean = (sort_and_unique(csv_list))
 csvlst_srt = sorted(csv_clean, key = lambda x : (x[2])) #sort list by run number
 
-#print headers and schedule
+#clear screen and print header/table
+os.system('clear')
 for items in csv_clnheader:
     print (''.join(map(str, items)))
-for items in csvlst_srt:
-    print (''.join(map(str, items)))
+df = pd.DataFrame(csvlst_srt)
+print df
