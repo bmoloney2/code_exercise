@@ -1,5 +1,5 @@
 # code_exercise
-A solution to the code exercise written in Python.
+This is a solution to the coding exercise written in Python.
 
 You will need the Python module pandas installed:
 sudo apt-get install python-pandas
